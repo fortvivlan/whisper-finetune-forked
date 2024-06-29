@@ -66,7 +66,7 @@ def main(args):
         os.system(f"cp {ckpt_dir_parent}/added_tokens.json {ckpt_dir_parent}/normalizer.json \
         {ckpt_dir_parent}/preprocessor_config.json {ckpt_dir_parent}/special_tokens_map.json \
         {ckpt_dir_parent}/tokenizer_config.json {ckpt_dir_parent}/merges.txt \
-        {ckpt_dir_parent}/vocab.json {args.ckpt_dir}/config.json {args.ckpt_dir}/pytorch_model.bin \
+        {ckpt_dir_parent}/vocab.json {args.ckpt_dir}/config.json {args.ckpt_dir}/model.safetensors \
         {args.ckpt_dir}/training_args.bin {args.temp_ckpt_folder}")
         model_id = args.temp_ckpt_folder
     else:
@@ -122,7 +122,7 @@ def main(args):
             op_file = op_file + '_' + args.hf_model.replace('/', '_')
         else:
             op_file = op_file + '_' + args.ckpt_dir.split('/')[-1].replace('/', '_')
-        result_file = open(op_file, 'w')
+        result_file = open(op_file, 'w', encoding='utf8')
         result_file.write('\nWER: ' + str(wer) + '\n')
         result_file.write('CER: ' + str(cer) + '\n')
         result_file.write('\nNORMALIZED WER: ' + str(norm_wer) + '\n')

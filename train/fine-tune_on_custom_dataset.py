@@ -278,7 +278,7 @@ if args.train_strategy == 'epoch':
     training_args = Seq2SeqTrainingArguments(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.train_batchsize,
-        gradient_accumulation_steps=1,
+        gradient_accumulation_steps=args.train_batchsize // 16 or 1,
         learning_rate=args.learning_rate,
         warmup_steps=args.warmup,
         gradient_checkpointing=gradient_checkpointing,
@@ -303,7 +303,7 @@ elif args.train_strategy == 'steps':
     training_args = Seq2SeqTrainingArguments(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.train_batchsize,
-        gradient_accumulation_steps=1,
+        gradient_accumulation_steps=args.train_batchsize // 16 or 1,
         learning_rate=args.learning_rate,
         warmup_steps=args.warmup,
         gradient_checkpointing=gradient_checkpointing,

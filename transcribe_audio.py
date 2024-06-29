@@ -1,4 +1,6 @@
 import argparse
+import os
+from pathlib import Path
 from transformers import pipeline
 
 parser = argparse.ArgumentParser(description='Script to transcribe a custom audio file of any length using Whisper Models of various sizes.')
@@ -59,7 +61,7 @@ if args.is_public_repo == False:
     os.system(f"cp {ckpt_dir_parent}/added_tokens.json {ckpt_dir_parent}/normalizer.json \
     {ckpt_dir_parent}/preprocessor_config.json {ckpt_dir_parent}/special_tokens_map.json \
     {ckpt_dir_parent}/tokenizer_config.json {ckpt_dir_parent}/merges.txt \
-    {ckpt_dir_parent}/vocab.json {args.ckpt_dir}/config.json {args.ckpt_dir}/pytorch_model.bin \
+    {ckpt_dir_parent}/vocab.json {args.ckpt_dir}/config.json {args.ckpt_dir}/model.safetensors \
     {args.ckpt_dir}/training_args.bin {args.temp_ckpt_folder}")
     model_id = args.temp_ckpt_folder
 else:
